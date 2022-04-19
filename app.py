@@ -3,7 +3,6 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
-fl
 from forms import UserAddForm, LoginForm, MessageForm
 from models import db, connect_db, User, Message
 
@@ -39,7 +38,6 @@ def add_user_to_g():
     else:
         g.user = None
 
-
 def do_login(user):
     """Log in user."""
 
@@ -52,6 +50,7 @@ def do_logout():
     if CURR_USER_KEY in session:
         del session[CURR_USER_KEY]
 
+    return redirect("/login")
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
